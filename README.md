@@ -55,9 +55,34 @@ upgrade-go          # Deletes existing go installation and installs 1.19
 
 For example, to set up your environment, enter `sudo make setup`.
 
+## GitHub Actions
+
+GitHub Actions is an integration tool. It allows you to keep your code and integration platform in one place.
+
+GitHub Action workflows are stored in the .github directory:
+
+```shell
+$ mkdir -p .github/workflows
+$ touch .github/workflows/pipeline.yml
+```
+You can create multiple workflows for a single repository.
+
 ## Continuous integration
 
 Continuous integration requires a central code repository that contains all the raw materials for the project.
+
+Trunk-based development
+: Frequent changes to the main product. You can increase throughput--decrease WIP--if you commit and test smaller batch sizes of code. Smaller, faster changes allows you to correct problems and stabilize a system faster than hidde bugs and issues that might occur if you have a large, long-running branch.
+
+Gitflow
+: When you have more than one branch, and you must keep them in sync. For example, you might have a separate branch for production, QA, and development.
+
+Release
+: A deployable product. You might not make it generally available--you might just mark it as a place on the trunk where the product has passed specific tests.
+
+A Makefile and GitHub actions enable continuous integration.
+
+
 
 
 

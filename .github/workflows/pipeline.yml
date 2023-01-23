@@ -1,0 +1,35 @@
+name: CI Checks
+
+on:
+  push:
+    branches:
+      - main      # CI Checks runs only on pushes to main
+    #paths:
+     # - ch1/**    # only runs on changes to ch1 directory
+jobs:
+  build:
+    name: Build App
+    runs-on: ubuntu-latest        # run on linux-based machine
+    steps:
+
+    - name: Set up Go 1.x         # ensure that our image has Go 1.19
+      uses: actions/setup-go@v2
+      with:
+        go-version: ^1.19
+    
+    - name: Check out code into the Go module directory  # pull code from local repo
+      uses: actions/checkout@v2
+
+    - name: Build                 # build binary with make target
+      run: make build
+
+    - name: Copy Files            # copy the binary to artifacts directory
+      run: |
+           mkdir artifacts
+           cp api artifacts/.
+
+    - name: Archive               # create an archive to attach to the binary workflow
+      uses: actions/upload-artifact@v2
+      with:
+          name: api               # name the binary directory something that you can identify
+          path: artifacts
