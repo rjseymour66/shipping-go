@@ -133,5 +133,11 @@ You need a system to prove that your code works. The scientific method: question
 2. _Act_ on the code you are testing
 3. _Assert_ the results
 
+### Code coverage
+
+Go provides code coverage tests that highlight a percentage of the code that has been tested and highlight areas that you might have missed.
+
+While achieving high code coverage is important, trying to reach 100% might result in poorly written tests that are difficult to maintain over time and delay the delivery of the software.
+
 ### REST 
 
