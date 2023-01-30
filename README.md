@@ -89,6 +89,12 @@ A Makefile and GitHub actions enable continuous integration.
 
 ## Continuous testing
 
+Generally, test code falls in two categories:
+1. `Unit-level tests` are small contained tests that run portions of code in isolation. These are the foundation of the testing pyramid.
+2. `System-level tests` require interactions between various code segments or systems. These are difficult to manage and expensive, so they sit at the top of the testing pyramid.
+
+### Types of tests
+
 | Test | Description |
 |------|:------------|
 | Unit | Independent portions of code (functions, etc.) |
@@ -98,3 +104,32 @@ A Makefile and GitHub actions enable continuous integration.
 | Smoke | Does the application run? |
 | Load | How the application runs under high levels of input or users. |
 | Regression | Have past bugs reoccurred within the system or whether a feature no longer works as intended. |
+
+### Testing pyramid
+
+If the _unit tests_ do not pass, you cannot advance up the testing pyramid. 
+
+Further up the pyramid, you find _integration tests_--tests that verify the functionality between units of work, often including an integration with an external dependency like a database.
+
+_Acceptance tests_ verify results from a customer prospective.
+
+_End-to-end_ tests verify that the system is working as expected. These tests include load-testing, where you test a system with a large amount of input or users.
+
+As you move up the pyramid, each layer becomes smaller because they become more expensive to run. They require dependencies or more resources, and they are not always consistent and might not produce _deterministic_ results.
+
+### What to test
+
+Decompose your work into testable units called _system under tests_ (SUT). SUTs have clear boundaries and should be treated as a black box. You should test inputs and assert that the outputs are correct. As you move up the testing pyramid, results are _stochastic_, or random.
+
+### How to test
+
+Test-Driven Development (TDD) motivates developers to meet the requirements set forth by the customer and verify them through the use of tests. This motivation is to help develop the bare minimum and move forward while preventing waste. A similar approach is "duct tape programming": take a basic test and interface, then move forward and make it work. You refine and revisit as needed.
+
+#### 3 steps
+
+You need a system to prove that your code works. The scientific method: question, test, and results. The following steps mimic this method:
+
+1. _Arrange_ your test code so that everything is set up
+2. _Act_ on the code you are testing
+3. _Assert_ the results
+
