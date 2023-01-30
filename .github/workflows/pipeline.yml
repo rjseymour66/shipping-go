@@ -7,6 +7,18 @@ on:
     #paths:
      # - ch1/**    # only runs on changes to ch1 directory
 jobs:
+  test:
+    name: Test Application
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up Go 1.x
+      uses: actions/setup-go@v2
+      with:
+        go-version: ^1.16
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+    - name: Run Test
+      run: go test ./...
   build:
     name: Build App
     runs-on: ubuntu-latest        # run on linux-based machine
