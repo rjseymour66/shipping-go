@@ -162,9 +162,13 @@ Containers as a Service (CaaS)
 : _AWS ECS_, _Google Cloud Run_
 
 Platform as a Service (PaaS)
-: VM, OS, Runtime, Application. Allows developers to quickly create and iterate on their platforms.
+: VM, OS, Runtime, Application. Allows developers to quickly create and iterate on their platforms. You provide the source code, and the platform identifies, builds, and runs your application.
 : _Heroku_, _Google App Engine_
 
 Function as a Service (FaaS)
 : VM, OS, Runtime, Application, Functions. Called _serverless_, because the developer doesn't have to know anything about the platform or runtime--just upload a function to run at an endpoint.
 : _AWS Lambda_, _Google Cloud Functions_.
+
+### Scale
+
+You need a way to check that your application is running and healthy. You can use a _health check_ endpoint that tells the running platform that the service is working and ready.
