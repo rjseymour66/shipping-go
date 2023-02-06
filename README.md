@@ -141,3 +141,9 @@ While achieving high code coverage is important, trying to reach 100% might resu
 
 ### REST 
 
+## Continuous delivery 
+
+_Delivery_ is providing a product for someone to use. _Deployment_ is the final step in a process where you are running and using your product as a service. Not all products are deployed but all should be delivered. For example, libraries are delivered but not deployed.
+
+Typically, a release is paired with an artifact and a message about what has changed since the previous release. An artifact is any sort of released item, such as a binary file, zip file, etc. A release is the latest version of an application--something that a user can use.
+
