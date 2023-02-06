@@ -114,6 +114,6 @@ jobs:
         project_id: shipping-377004
         entry_point: Translate                                # function to call
         runtime: go113
-        credentials: ${{ secrets.gcp_credentials }}           # gcp service account secret
+        credentials: ${{ secrets.GCP_CREDENTIALS }}           # gcp service account secret
     - id: test
       run: curl "${{ steps.deploy.outputs.url }}/hello"       # test endpoint with a call
