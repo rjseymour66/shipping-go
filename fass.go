@@ -6,6 +6,6 @@ import (
 )
 
 // Translate runs as an FaaS on GCp.
-func Translate(w http.Response, r *http.Request) {
+func Translate(w http.ResponseWriter, r *http.Request) {
 	rest.TranslateHandler(w, r)
 }
