@@ -65,7 +65,7 @@ jobs:
     steps:
     - name: Checkout code
         uses: actions/checkout@v2
-    - name: Download binary
+    - name: Download binary                           # downlad binary from build step
         uses: actions/download-artifact@v2
         with:
           name: api
@@ -73,14 +73,14 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # GH provided token for auth to update your repo
         with:
-            tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+            tag_name: ${{ github.ref }}               # tag release using ref that triggered the build
+        release_name: Release ${{ github.ref }}       # name release using ref that triggered the build
         body: |
             Stil in experimentation phase
-        draft: true
-        prerelease: true
+        draft: true                                   # not final so customers won't see this
+        prerelease: true                              # mark as prerelease
     - name: Upload Release Binary
         uses: actions/upload-release-asset@v1
         env:
@@ -88,7 +88,7 @@ jobs:
               ${{ secrets.GITHUB_TOKEN }}
         with:
             upload_url:
-              ${{ secrets.GITHUB_TOKEN }}
+              ${{ steps.create_release.outputs.upload_url }}
         asset_path: api
         asset_name: api
-        asset_content_type: application/octet-stream
+        asset_content_type: application/octet-stream  # Content type is a binary, but need to look this up.
