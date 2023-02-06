@@ -80,8 +80,8 @@ jobs:
       with:
         tag_name: ${{ github.ref }}               # tag release using ref that triggered the build
         release_name: Release ${{ github.ref }}       # name release using ref that triggered the build
-      body: |
-          Still in experimentation phase
+        body: |
+            Still in experimentation phase
       draft: true                                   # not final so customers won't see this
       prerelease: true                              # mark as prerelease
 
