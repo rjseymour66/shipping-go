@@ -111,6 +111,7 @@ jobs:
       uses: google-github-actions/deploy-cloud-functions@main
       with:
         name: translate                                       # reference name
+        project_id: shipping-377004
         entry_point: Translate                                # function to call
         runtime: go113
         credentials: ${{ secrets.gcp_credentials }}           # gcp service account secret
