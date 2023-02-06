@@ -147,3 +147,24 @@ _Delivery_ is providing a product for someone to use. _Deployment_ is the final 
 
 Typically, a release is paired with an artifact and a message about what has changed since the previous release. An artifact is any sort of released item, such as a binary file, zip file, etc. A release is the latest version of an application--something that a user can use.
 
+### Deployment
+
+Servers are virtualized and controlled by a set of unique API commands that could allow for the easy creation and destruction of server instances. This abstraction is called Infrastructure as a Service (IaaS)
+
+X as a Service is an abstraction over deployment hardware. The higher the abstraction, the higher the overall cost.
+
+Infrastructure as a Service (IaaS)
+: OS and VM. Servers are virtualized and controlled by a set of unique API commands that could allow for the easy creation and destruction of server instances.
+: _AWS EC2_, _Google Compute_
+
+Containers as a Service (CaaS)
+: VM, OS, Runtime.
+: _AWS ECS_, _Google Cloud Run_
+
+Platform as a Service (PaaS)
+: VM, OS, Runtime, Application. Allows developers to quickly create and iterate on their platforms.
+: _Heroku_, _Google App Engine_
+
+Function as a Service (FaaS)
+: VM, OS, Runtime, Application, Functions. Called _serverless_, because the developer doesn't have to know anything about the platform or runtime--just upload a function to run at an endpoint.
+: _AWS Lambda_, _Google Cloud Functions_.
