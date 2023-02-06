@@ -65,20 +65,20 @@ jobs:
     steps:
     - name: Checkout code
         uses: actions/checkout@v2
-    - name: Download binary                           # downlad binary from build step
+    - name: Download binary                           # download binary from build step
         uses: actions/download-artifact@v2
         with:
-          name: api
+            name: api
     - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # GH provided token for auth to update your repo
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # GH provided token for auth to update your repo
         with:
             tag_name: ${{ github.ref }}               # tag release using ref that triggered the build
         release_name: Release ${{ github.ref }}       # name release using ref that triggered the build
         body: |
-            Stil in experimentation phase
+            Still in experimentation phase
         draft: true                                   # not final so customers won't see this
         prerelease: true                              # mark as prerelease
     - name: Upload Release Binary
