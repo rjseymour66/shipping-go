@@ -65,12 +65,12 @@ jobs:
     steps:
 
     - name: Checkout code
-        uses: actions/checkout@v2
+      uses: actions/checkout@v2
 
     - name: Download binary                           # download binary from build step
-        uses: actions/download-artifact@v2
-        with:
-            name: api
+      uses: actions/download-artifact@v2
+      with:
+          name: api
 
     - name: Create Release
         id: create_release
@@ -84,7 +84,7 @@ jobs:
             Still in experimentation phase
         draft: true                                   # not final so customers won't see this
         prerelease: true                              # mark as prerelease
-        
+
     - name: Upload Release Binary
         uses: actions/upload-release-asset@v1
         env:
