@@ -199,3 +199,7 @@ $ go vet ./...
 The preceding command logs any bugs or errors to the console.
 
 In addition, you can use `golangci-lint`. This tool lets you select from a variety of linting and static checking libraries to check for unused code, ineffective variable assignments, missing error checks, security risks, etc. To do this, you must create a file called `.golangci.yml` in the project root.
+
+# Git hooks
+
+A _hook_ runs either before or after a specific function executes. Development pipelines can use a _pre-commit hook_ that runs before the developer commits changes. This verifies that the code is working properly, and it prevents failing tests from running in the public repo.
