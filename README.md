@@ -183,3 +183,9 @@ Add rules on PRs to protect the source code and require contributors to explain 
 ## PR template
 
 You can create a PR template in `./github/PULL_REQUEST_TEMPLATE.md`.
+
+## Constraints
+
+Constraints--or bottlenecks--are the part of the application that determines throughput. Any optimizations that are not at a constraint are pointless.
+
+The slowest part of the development pipeline is the developer--the thought process, and the actual developing.
