@@ -1,9 +1,11 @@
+// Package translation implements the business logic for translating
+// the word "hello" into another language.
 package translation
 
 import "strings"
 
 // Translate accepts a source word and a language to translate it to, and
-// returns the translated word.
+// returns the translated word or an empty string.
 func Translate(word string, language string) string {
 	word = sanitizeInput(word)
 	language = sanitizeInput(language)

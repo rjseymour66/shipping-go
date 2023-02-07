@@ -1,3 +1,4 @@
+// Package handlers defines the health check handler.
 package handlers
 
 import (
