@@ -3,6 +3,7 @@ GO_VERSION := 1.19.4
 setup:
 	install-go
 	init-go
+	install-lint
 
 install-go:
 	wget "https://golang.org/dl/go$(GO_VERSION).linux-amd64.tar.gz"
@@ -34,3 +35,11 @@ report:
 
 check-format:
 	test -z $$(go fmt ./...)
+
+install-lint: 
+	sudo curl -sSfL \
+	https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh \
+ 	| sh -s -- -b $$(go env GOPATH)/bin v1.51.1
+
+lint:
+	golangci-lint run ./...

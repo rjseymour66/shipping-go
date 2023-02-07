@@ -189,3 +189,13 @@ You can create a PR template in `./github/PULL_REQUEST_TEMPLATE.md`.
 Constraints--or bottlenecks--are the part of the application that determines throughput. Any optimizations that are not at a constraint are pointless.
 
 The slowest part of the development pipeline is the developer--the thought process, and the actual developing.
+
+## Static code analysis
+
+_Static code analysis_ tools detect bad coding practices and antipatterns that might result in bugs or security vulnerabilities. Go provides go vet:
+```shell
+$ go vet ./...
+```
+The preceding command logs any bugs or errors to the console.
+
+In addition, you can use `golangci-lint`. This tool lets you select from a variety of linting and static checking libraries to check for unused code, ineffective variable assignments, missing error checks, security risks, etc. To do this, you must create a file called `.golangci.yml` in the project root.
