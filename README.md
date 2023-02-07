@@ -172,3 +172,14 @@ Function as a Service (FaaS)
 ### Scale
 
 You need a way to check that your application is running and healthy. You can use a _health check_ endpoint that tells the running platform that the service is working and ready.
+
+# Code quality enforcement
+
+Add rules on PRs to protect the source code and require contributors to explain the changes that they are making. In your repo, complete the following:
+1. Go to Settings > Branches.
+2. Under **Branch protection rule**, click **Add branch protection rule**.
+3. Select **Require a pull request before merging**.
+
+## PR template
+
+You can create a PR template in `./github/PULL_REQUEST_TEMPLATE.md`.
