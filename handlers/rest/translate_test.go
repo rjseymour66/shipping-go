@@ -3,6 +3,7 @@ package rest_test
 import (
 	"encoding/json"
 	"hello-api/handlers/rest"
+	"hello-api/translation"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -35,7 +36,8 @@ func TestTranslateAPI(t *testing.T) {
 		},
 	}
 
-	handler := http.HandlerFunc(rest.TranslateHandler)
+	underTest := rest.NewTranslateHandler(translation.NewStaticService())
+	handler := http.HandlerFunc(underTest.TranslateHandler)
 
 	// Arrange
 

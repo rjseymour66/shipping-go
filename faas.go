@@ -3,11 +3,10 @@
 package faas
 
 import (
-	"hello-api/handlers/rest"
 	"net/http"
 )
 
 // Translate runs as an FaaS on GCP.
 func Translate(w http.ResponseWriter, r *http.Request) {
-	rest.TranslateHandler(w, r)
+	// rest.TranslateHandler(w, r)
 }

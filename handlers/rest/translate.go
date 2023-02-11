@@ -4,10 +4,28 @@ package rest
 
 import (
 	"encoding/json"
-	"hello-api/translation"
 	"net/http"
 	"strings"
 )
+
+// Translator is an interface for a struct that implements the Translate
+// method that translates a word the given language.
+type Translator interface {
+	Translate(word string, language string) string
+}
+
+// TranslateHandler translates calls for the caller
+type TranslateHandler struct {
+	service Translator
+}
+
+// NewTranslateHandler creates a new instance of the handler using a
+// translation service.
+func NewTranslateHandler(service Translator) *TranslateHandler {
+	return &TranslateHandler{
+		service: service,
+	}
+}
 
 // Resp represents a response from the TranslationHandler.
 type Resp struct {
@@ -15,8 +33,9 @@ type Resp struct {
 	Translation string `json:"translation"`
 }
 
-// TranslateHandler writes a JSON-encoded translation response.
-func TranslateHandler(w http.ResponseWriter, r *http.Request) {
+// TranslateHandler takes a given request with a path value of the
+// word to be translated and a query parameter of the language to translate to.
+func (t *TranslateHandler) TranslateHandler(w http.ResponseWriter, r *http.Request) {
 	enc := json.NewEncoder(w)
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 
@@ -26,7 +45,7 @@ func TranslateHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	word := strings.ReplaceAll(r.URL.Path, "/", "")
-	translation := translation.Translate(word, language)
+	translation := t.service.Translate(word, language)
 	if translation == "" {
 		w.WriteHeader(404)
 		return

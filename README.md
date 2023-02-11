@@ -203,3 +203,13 @@ In addition, you can use `golangci-lint`. This tool lets you select from a varie
 # Git hooks
 
 A _hook_ runs either before or after a specific function executes. Development pipelines can use a _pre-commit hook_ that runs before the developer commits changes. This verifies that the code is working properly, and it prevents failing tests from running in the public repo.
+
+# Dependency inversion principle
+
+Always depend on abstractions, not implementation. Instead of using an implemented class or function directly, you should use an _interface_. You create a structure that fulfills the interface and then you inject it into the consuming struct.
+
+> Think about an electrical plug: you can access electricity with any appliance that has a two-pronged plug. This prevents having to wire your appliance directly into the home or building electrical system. The outlet is the interface, and the plug follows the interface contract.
+
+An interface is an abstraction that allows you to easily use something that is more complex, behind the scenes. In software development, an interface defines the functions for a given struct or class. A struct that has all requested functions statisfies the interface, and you can use it in place of another service that satisfies the interface. An interface is a protocol that defines the boundaries between systems and provides a way to communicate across those boundaries.
+
+Interfaces simplify code testing. _Interface segregation_ is when you split interfaces into small chunks to make them more composable and reusable. Think of the `io.Reader` and `io.Writer` interface.
