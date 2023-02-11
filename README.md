@@ -213,3 +213,44 @@ Always depend on abstractions, not implementation. Instead of using an implement
 An interface is an abstraction that allows you to easily use something that is more complex, behind the scenes. In software development, an interface defines the functions for a given struct or class. A struct that has all requested functions statisfies the interface, and you can use it in place of another service that satisfies the interface. An interface is a protocol that defines the boundaries between systems and provides a way to communicate across those boundaries.
 
 Interfaces simplify code testing. _Interface segregation_ is when you split interfaces into small chunks to make them more composable and reusable. Think of the `io.Reader` and `io.Writer` interface.
+
+# Implementing interfaces
+
+Use interfaces so you do not have to directly call other methods in your code. For example, instead of calling a function directly, you can do the following:
+1. Create an interface for that function. For example, 
+2. Create a type that has a field that implements that interface
+3. Create a type that implements the interface.
+4. Pass the type that implements the interface as the field to the other type.
+
+Create an interface with the method that you want to implement:
+
+```go
+type Translator interface {
+	Translate(word string, language string) string
+}
+```
+
+Create a type that has a field that implements the interface. Create a factory method that returns an implementation:
+```go
+type TranslateHandler struct {
+	service Translator
+}
+
+func NewTranslateHandler(service Translator) *TranslateHandler {...}
+```
+
+Create the type that implements the interface:
+```go
+type StaticService struct{}
+
+func NewStaticService() *StaticService {...}
+
+func (s *StaticService) Translate(word string, language string) string {...}
+```
+
+To use this, create a `StaticService` object, and pass it to a `TranslateHandler` object:
+
+```go
+translationService := translation.NewStaticService()
+translateHandler := rest.NewTranslateHandler(translationService)
+```
