@@ -3,11 +3,24 @@ package rest_test
 import (
 	"encoding/json"
 	"hello-api/handlers/rest"
-	"hello-api/translation"
 	"net/http"
 	"net/http/httptest"
 	"testing"
 )
+
+/*
+Stubs implement the interface with minimal logic and hard-coded values.
+*/
+
+type stubbedService struct{}
+
+// Implements the interface under test.
+func (s *stubbedService) Translate(word string, language string) string {
+	if word == "foo" {
+		return "bar"
+	}
+	return ""
+}
 
 func TestTranslateAPI(t *testing.T) {
 	tt := []struct {
@@ -17,27 +30,33 @@ func TestTranslateAPI(t *testing.T) {
 		ExpectedTranslation string
 	}{
 		{
-			Endpoint:            "/hello",
+			Endpoint:            "/translate/foo",
 			StatusCode:          200,
 			ExpectedLanguage:    "english",
-			ExpectedTranslation: "hello",
+			ExpectedTranslation: "bar",
 		},
 		{
-			Endpoint:            "/hello?language=german",
+			Endpoint:            "/translate/foo?language=german",
 			StatusCode:          200,
 			ExpectedLanguage:    "german",
-			ExpectedTranslation: "hallo",
+			ExpectedTranslation: "bar",
 		},
 		{
-			Endpoint:            "/hello?language=dutch",
+			Endpoint:            "/translate/foo?language=GerMan",
+			StatusCode:          200,
+			ExpectedLanguage:    "german",
+			ExpectedTranslation: "bar",
+		},
+		{
+			Endpoint:            "/translate/baz",
 			StatusCode:          404,
 			ExpectedLanguage:    "",
 			ExpectedTranslation: "",
 		},
 	}
 
-	underTest := rest.NewTranslateHandler(translation.NewStaticService())
-	handler := http.HandlerFunc(underTest.TranslateHandler)
+	h := rest.NewTranslateHandler(&stubbedService{})
+	handler := http.HandlerFunc(h.TranslateHandler)
 
 	// Arrange
 

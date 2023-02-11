@@ -214,6 +214,53 @@ An interface is an abstraction that allows you to easily use something that is m
 
 Interfaces simplify code testing. _Interface segregation_ is when you split interfaces into small chunks to make them more composable and reusable. Think of the `io.Reader` and `io.Writer` interface.
 
+# Testing dependency injection
+
+Dependency injection allows you to constrain and isolate various parts of the underlying code to help minimize the effects of any _independent variables_, which are the variables that we test.
+
+For example, if you have a service that translates a word into a set amount of languages, do not test the specific languages but rather what would trigger responses. If you test for a specific language, the implementation and testing are tightly coupled. You might want to test that valid requests return a `200` code, and invalid requests return a `404`.
+
+## Stubs
+
+Dependency injection means that you can create a _stub_, a service specifically for testing. Use stubs to test any structure (services, repositories, utilities, etc.). Stubs are not complicated--they return hard-coded values.
+
+Stubs help you focus on testing the results rather than pushing logic through the tests. You do not test dependencies, you test how the part of your application works with dependencies. So, if you are testing a service that translates a word into another language, you might have test cases for the following:
+- The default language is returned correctly
+- If a word is translated, return the new new word
+- If a word is not translated, return the correct error response
+
+For example:
+```go
+type stubbedService struct{}
+
+// Implements the interface under test.
+func (s *stubbedService) Translate(word string, language string) string {
+	if word == "foo" {
+		return "bar"
+	}
+	return ""
+}
+
+func TestTranslateAPI(t *testing.T) {
+	tt := []struct {
+		Endpoint            string
+		StatusCode          int
+		ExpectedLanguage    string
+		ExpectedTranslation string
+	}{
+		{
+			Endpoint:            "/translate/foo",
+			StatusCode:          200,
+			ExpectedLanguage:    "english",
+			ExpectedTranslation: "bar",
+		},
+		...
+```
+
+## Mocking
+
+Mocks are stubs with more detail. Mocks have methods that allow you to test error handling and edge cases.
+
 # Implementing interfaces
 
 Use interfaces so you do not have to directly call other methods in your code. For example, instead of calling a function directly, you can do the following:
