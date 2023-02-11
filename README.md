@@ -255,4 +255,4 @@ translationService := translation.NewStaticService()
 translateHandler := rest.NewTranslateHandler(translationService)
 ```
 
-![Interface diagram](./images/interface.svg)
+![Interface diagram](./images/interface.svg "Interface implementation")
