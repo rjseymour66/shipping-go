@@ -254,3 +254,5 @@ To use this, create a `StaticService` object, and pass it to a `TranslateHandler
 translationService := translation.NewStaticService()
 translateHandler := rest.NewTranslateHandler(translationService)
 ```
+
+![Interface diagram](images/interface.svg)
