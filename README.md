@@ -261,6 +261,12 @@ func TestTranslateAPI(t *testing.T) {
 
 Mocks are stubs with more detail. Mocks have methods that allow you to test error handling and edge cases.
 
+## Fakes
+
+> Fakes can test _external dependencies_, or systems outside your control. For a more robust solution, you can look at the Circuit Breakers pattern.
+
+A _fake_ is an object, struct, or service with limited capabilites that stands in for an external service. You can use this to create an HTTP test server.
+
 # Implementing interfaces
 
 Use interfaces so you do not have to directly call other methods in your code. For example, instead of calling a function directly, you can do the following:
