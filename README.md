@@ -309,3 +309,15 @@ translateHandler := rest.NewTranslateHandler(translationService)
 ```
 
 ![Interface diagram](/images/interface.svg "Interface implementation")
+
+## Containerization
+
+### Buildpacks
+
+The developer provides the code and the cloud provider builds the image. Buildpacks have two stages:
+1. Detection: the buildpack analyzes your source code to determine if it can recognize it and build the container.
+2. Build: gathers dependencies to run the application
+
+### Building an image
+
+Go is a compiled language, so it does not usually have external dependencies. This means that you can use Go binaries with small base images. A _base image_ is the starting point of an image, such as Ubuntu.
