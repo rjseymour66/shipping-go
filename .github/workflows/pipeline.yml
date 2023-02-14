@@ -44,7 +44,7 @@ jobs:
   test:
     needs:
       - format-check
-      - lint
+      # - lint
     name: Test Application
     runs-on: ubuntu-latest
     steps:
