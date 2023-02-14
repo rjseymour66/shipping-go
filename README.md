@@ -321,3 +321,7 @@ The developer provides the code and the cloud provider builds the image. Buildpa
 ### Building an image
 
 Go is a compiled language, so it does not usually have external dependencies. This means that you can use Go binaries with small base images. A _base image_ is the starting point of an image, such as Ubuntu.
+
+### Docker Compose
+
+Docker compose is a tool for running more than one container.
